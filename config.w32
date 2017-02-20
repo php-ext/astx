@@ -1,0 +1,12 @@
+// $Id$
+// vim:ft=javascript
+
+// If your extension references something external, use ARG_WITH
+// ARG_WITH("astx", "for astx support", "no");
+
+// Otherwise, use ARG_ENABLE
+ARG_ENABLE("astx", "enable astx support", "no");
+
+if (PHP_ASTX != "no") {
+        EXTENSION("astx", "astx.c", PHP_EXTNAME_SHARED, "/DZEND_ENABLE_STATIC_TSRMLS_CACHE=1");
+}
