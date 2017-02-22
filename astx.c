@@ -26,62 +26,29 @@
 #include "php_ini.h"
 #include "ext/standard/info.h"
 #include "php_astx.h"
+#include "core.h"
 
 #if PHP_MAJOR_VERSION < 7
 # error ASTX requires PHP version 7 or newer
 #endif
 
-/* If you declare any globals in php_astx.h uncomment this:
+int astx_register_class_ast();
+int astx_register_class_ast_node();
+int astx_register_class_ast_nodes();
+int astx_register_class_ast_node_visitor();
+
+
 ZEND_DECLARE_MODULE_GLOBALS(astx)
-*/
+
 
 /* True global resources - no need for thread safety here */
 static int le_astx;
 
-/* {{{ PHP_INI
-*/
-/* Remove comments and fill if you need to have entries in php.ini
+/* {{{ PHP_INI */
 PHP_INI_BEGIN()
-STD_PHP_INI_ENTRY("astx.global_value",      "42", PHP_INI_ALL, OnUpdateLong, global_value, zend_astx_globals, astx_globals)
-STD_PHP_INI_ENTRY("astx.global_string", "foobar", PHP_INI_ALL, OnUpdateString, global_string, zend_astx_globals, astx_globals)
+PHP_INI_ENTRY("astx.enable_ast_process",  "0", PHP_INI_ALL, NULL)
+PHP_INI_ENTRY("astx.allow_ast_process", "0", PHP_INI_ALL, NULL)
 PHP_INI_END()
-*/
-/* }}} */
-
-
-/* Remove the following function when you have successfully modified config.m4
-so that your module can be compiled into PHP, it exists only for testing
-purposes. */
-
-/* Every user-visible function in PHP should document itself in the source */
-/* {{{ proto string confirm_astx_compiled(string arg)
-Return a string to confirm that the extension is compiled in */
-PHP_FUNCTION(confirm_astx_compiled)
-{
-	char *arg = NULL;
-	size_t arg_len, len;
-	zend_string *strg;
-
-	if (zend_parse_parameters(ZEND_NUM_ARGS(), "s", &arg, &arg_len) == FAILURE) {
-		return;
-	}
-
-	strg = strpprintf(0, "Congratulations! You have successfully modified ext/%.78s/config.m4. Extension %.78s is now compiled into PHP.", "astx", arg);
-
-	RETURN_STR(strg);
-}
-/* }}} */
-
-
-/* {{{ php_astx_init_globals
-*/
-/* Uncomment this function if you have INI entries
-static void php_astx_init_globals(zend_astx_globals *astx_globals)
-{
-astx_globals->global_value = 0;
-astx_globals->global_string = NULL;
-}
-*/
 /* }}} */
 
 
@@ -89,9 +56,7 @@ astx_globals->global_string = NULL;
 */
 PHP_MINIT_FUNCTION(astx)
 {
-	/* If you have INI entries, uncomment these lines
 	REGISTER_INI_ENTRIES();
-	*/
 	return SUCCESS;
 }
 /* }}} */
@@ -101,15 +66,15 @@ PHP_MINIT_FUNCTION(astx)
 */
 PHP_MSHUTDOWN_FUNCTION(astx)
 {
-	/* uncomment this line if you have INI entries
+	if (prev_ast_process) {
+		zend_ast_process = prev_ast_process;
+	}
 	UNREGISTER_INI_ENTRIES();
-	*/
 	return SUCCESS;
 }
 /* }}} */
 
 
-/* Remove if there's nothing to do at request start */
 /* {{{ PHP_RINIT_FUNCTION
 */
 PHP_RINIT_FUNCTION(astx)
@@ -122,11 +87,11 @@ PHP_RINIT_FUNCTION(astx)
 /* }}} */
 
 
-/* Remove if there's nothing to do at request end */
 /* {{{ PHP_RSHUTDOWN_FUNCTION
 */
 PHP_RSHUTDOWN_FUNCTION(astx)
 {
+	zend_hash_clean(&ASTX_G(file_ast_nodes));
 	return SUCCESS;
 }
 /* }}} */
@@ -137,22 +102,27 @@ PHP_RSHUTDOWN_FUNCTION(astx)
 PHP_MINFO_FUNCTION(astx)
 {
 	php_info_print_table_start();
-	php_info_print_table_header(2, "astx support", "enabled");
+	php_info_print_table_header(2, "ast support", "enabled");
 	php_info_print_table_end();
-
-	/* Remove comments if you have entries in php.ini
+	
 	DISPLAY_INI_ENTRIES();
-	*/
 }
 /* }}} */
 
+
+/* {{{ PHP_GINIT_FUNCTION
+*/
+PHP_GINIT_FUNCTION(astx)
+{
+	zend_hash_init(&astx_globals->file_ast_nodes, 32, NULL, ZVAL_PTR_DTOR, 1);
+}
+/* }}} */
 
 /* {{{ astx_functions[]
 *
 * Every user visible function must have an entry in astx_functions[].
 */
 const zend_function_entry astx_functions[] = {
-	PHP_FE(confirm_astx_compiled, NULL)           /* For testing, remove later. */
 	PHP_FE_END      /* Must be the last line in astx_functions[] */
 };
 /* }}} */
@@ -170,7 +140,11 @@ zend_module_entry astx_module_entry = {
 	PHP_RSHUTDOWN(astx),  /* Replace with NULL if there's nothing to do at request end */
 	PHP_MINFO(astx),
 	PHP_ASTX_VERSION,
-	STANDARD_MODULE_PROPERTIES
+	PHP_MODULE_GLOBALS(astx),
+	PHP_GINIT(astx),
+	NULL,
+	NULL,
+	STANDARD_MODULE_PROPERTIES_EX
 };
 /* }}} */
 

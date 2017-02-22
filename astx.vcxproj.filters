@@ -30,9 +30,24 @@
     <ClInclude Include="php_astx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="core.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="astx.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="core.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="class_ast.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="class_ast_node.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="class_ast_node_visitor.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -43,9 +58,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="config.m4" />
-    <None Include="config.w32" />    
+    <None Include="config.w32" />
     <None Include="php.extension.props">
       <Filter>Properties</Filter>
     </None>
+    <None Include="astx.php">
+      <Filter>PHP Files</Filter>
+    </None>
+    <None Include="tests/001.phpt">
+      <Filter>PHP Tests</Filter>
+    </None>
+    <None Include="astx.vcxproj.user" />
   </ItemGroup>
 </Project>

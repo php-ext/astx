@@ -38,7 +38,7 @@
     <ProjectGuid>{F1B27CCD-780A-425B-9560-64C4F146F910}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>astx</RootNamespace>
-    <TargetName>php_astx</TargetName>  
+    <TargetName>php_astx</TargetName>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -109,7 +109,7 @@
     <CharacterSet>Unicode</CharacterSet>
     <OutDir>$(MSBuildProjectDirectory)\x64\$(Configuration)\bin\</OutDir>
     <IntDir>$(MSBuildProjectDirectory)\x64\$(Configuration)\obj\</IntDir>
-   </PropertyGroup>
+  </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
   </ImportGroup>
@@ -119,17 +119,17 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="php.extension.props" Condition="exists('php.extension.props')" />
     <Import Project="$(VisualStudioDir)\Properties\php.extension.props" Condition="exists('$(VisualStudioDir)\Properties\php.extension.props')" />
-   </ImportGroup>
+  </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="php.extension.props" Condition="exists('php.extension.props')" />
     <Import Project="$(VisualStudioDir)\Properties\php.extension.props" Condition="exists('$(VisualStudioDir)\Properties\php.extension.props')" />
   </ImportGroup>
-  <ImportGroup  Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug_TS|Win32'">
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug_TS|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-        <Import Project="php.extension.props" Condition="exists('php.extension.props')" />
+    <Import Project="php.extension.props" Condition="exists('php.extension.props')" />
     <Import Project="$(VisualStudioDir)\Properties\php.extension.props" Condition="exists('$(VisualStudioDir)\Properties\php.extension.props')" />
-  </ImportGroup>  
+  </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug_TS|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="php.extension.props" Condition="exists('php.extension.props')" />
@@ -155,15 +155,15 @@
     <Import Project="php.extension.props" Condition="exists('php.extension.props')" />
     <Import Project="$(VisualStudioDir)\Properties\php.extension.props" Condition="exists('$(VisualStudioDir)\Properties\php.extension.props')" />
   </ImportGroup>
-  <PropertyGroup Label="UserMacros" >
+  <PropertyGroup Label="UserMacros">
     <VCVersion>14</VCVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Platform)'=='Win32'" Label="UserMacros">
     <PhpBinDir>$(PhpSrcDir)$(Configuration)</PhpBinDir>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Platform)'=='x64'" Label="UserMacros">    
+  <PropertyGroup Condition="'$(Platform)'=='x64'" Label="UserMacros">
     <PhpBinDir>$(PhpSrcDir)x64\$(Configuration)\</PhpBinDir>
-  </PropertyGroup>  
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
@@ -310,7 +310,7 @@
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <OmitFramePointers />
-     </ClCompile>
+    </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -322,19 +322,19 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(PhpSrcDir)\main;$(PhpSrcDir)\Zend;$(PhpSrcDir)\TSRM;$(PhpSrcDir)</AdditionalIncludeDirectories>      
+      <AdditionalIncludeDirectories>$(PhpSrcDir)\main;$(PhpSrcDir)\Zend;$(PhpSrcDir)\TSRM;$(PhpSrcDir)</AdditionalIncludeDirectories>
       <WarningLevel>Level3</WarningLevel>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>NDEBUG;_WINDOWS;_USRDLL;ZEND_WIN32;PHP_WIN32;ZEND_DEBUG=0;ASTX_EXPORTS;COMPILE_DL_ASTX;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-       <StringPooling>true</StringPooling>
+      <StringPooling>true</StringPooling>
       <MinimalRebuild>false</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <OmitFramePointers />
-     </ClCompile>
+    </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -358,7 +358,7 @@
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <OmitFramePointers />
-     </ClCompile>
+    </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -374,18 +374,23 @@
     <Text Include="EXPERIMENTAL" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="core.h" />
     <ClInclude Include="php_astx.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="astx.c" />
+    <ClCompile Include="class_ast.c" />
+    <ClCompile Include="class_ast_node.c" />
+    <ClCompile Include="class_ast_node_visitor.c" />
+    <ClCompile Include="core.c" />
   </ItemGroup>
   <ItemGroup>
     <None Include="astx.php" />
     <None Include="config.m4" />
     <None Include="config.w32" />
-    <None Include="tests/001.phpt"/>
+    <None Include="tests/001.phpt" />
     <None Include="php.extension.props" />
-    <None Include="astx.vcxproj.user"/>
+    <None Include="astx.vcxproj.user" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
