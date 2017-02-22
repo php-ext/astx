@@ -58,5 +58,5 @@ if test "$PHP_ASTX" != "no"; then
   dnl
   dnl PHP_SUBST(ASTX_SHARED_LIBADD)
 
-  PHP_NEW_EXTENSION(astx, astx.c, $ext_shared,, -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1)
+  PHP_NEW_EXTENSION(astx, astx.c, core.c, class_ast.c, class_ast_node.c, class_ast_node_visitor.c, $ext_shared,, -DZEND_ENABLE_STATIC_TSRMLS_CACHE=1)
 fi
