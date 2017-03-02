@@ -381,6 +381,7 @@
     <ClCompile Include="astx.c" />
     <ClCompile Include="class_ast.c" />
     <ClCompile Include="class_ast_node.c" />
+    <ClCompile Include="class_ast_nodes.c" />
     <ClCompile Include="class_ast_node_visitor.c" />
     <ClCompile Include="core.c" />
   </ItemGroup>

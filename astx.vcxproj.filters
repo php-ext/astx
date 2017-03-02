@@ -50,6 +50,9 @@
     <ClCompile Include="class_ast_node_visitor.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="class_ast_nodes.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="README.md" />
