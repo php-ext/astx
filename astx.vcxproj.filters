@@ -41,16 +41,16 @@
     <ClCompile Include="core.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="class_ast.c">
+    <ClCompile Include="ast.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="class_ast_node.c">
+    <ClCompile Include="ast_node.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="class_ast_node_visitor.c">
+    <ClCompile Include="ast_node_visitor.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="class_ast_nodes.c">
+    <ClCompile Include="ast_nodes.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

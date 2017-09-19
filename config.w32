@@ -8,5 +8,5 @@
 ARG_ENABLE("astx", "enable astx support", "no");
 
 if (PHP_ASTX != "no") {
-        EXTENSION("astx", "astx.c, core.c, class_ast.c, class_ast_node.c, class_ast_node_visitor.c", PHP_EXTNAME_SHARED, "/DZEND_ENABLE_STATIC_TSRMLS_CACHE=1");
+        EXTENSION("astx", "astx.c, core.c, ast.c, ast_node.c, ast_node_visitor.c", PHP_EXTNAME_SHARED, "/DZEND_ENABLE_STATIC_TSRMLS_CACHE=1");
 }
